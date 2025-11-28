@@ -1,0 +1,31 @@
+﻿@page
+@model TaglineAIWeb.Pages.IndexModel
+
+<h1>TaglineAI</h1>
+
+<form method="post" asp-page-handler="Generate">
+    <textarea asp-for="Input.Description" placeholder="Describe the business..."></textarea>
+    <select asp-for="Input.Count">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <button type="submit">Generate</button>
+</form>
+
+@if (Model.Generated != null)
+{
+    <ul>
+        @foreach (var t in Model.Generated)
+        {
+            <li>@t</li>
+        }
+    </ul>
+}
+
+@if (Model.Error != null)
+{
+    <p style="color:red">@Model.Error</p>
+}
